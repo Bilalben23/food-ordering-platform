@@ -1,7 +1,7 @@
 import { Menu } from 'lucide-react';
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
-import { Separator } from '@radix-ui/react-separator';
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from './ui/sheet';
 import { Button } from './ui/button';
+import { Separator } from './ui/separator';
 
 export default function MobileNav() {
   return (
