@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { ENV_VARS } from "./config/envVars";
+import connectDB from "./config/db";
 
 
 const app = express();
@@ -23,5 +24,6 @@ app.get("/", async (req, res) => {
 
 const PORT = ENV_VARS.PORT;
 app.listen(PORT, () => {
-    console.log(`app is running at http://localhost:${PORT}`);
+    connectDB();
+    console.log(`✅ App is running on http://localhost:${ENV_VARS.PORT}`);
 })
