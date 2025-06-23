@@ -1,9 +1,10 @@
-import { Button } from './components/ui/button'
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './lib/AppRoutes';
 
 export default function App() {
   return (
-    <div>
-      <Button>Click me</Button>
-    </div>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   )
 }
