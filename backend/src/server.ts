@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { ENV_VARS } from "./config/envVars";
 import connectDB from "./config/db";
+import myUserRoutes from "./routes/myUser.routes";
 
 
 const app = express();
@@ -18,9 +19,9 @@ app.use(cors({
 }));
 
 
-app.get("/", async (req, res) => {
-    res.send("Hello world");
-})
+
+app.use("/api/v1/my/user", myUserRoutes);
+
 
 const PORT = ENV_VARS.PORT;
 app.listen(PORT, () => {
