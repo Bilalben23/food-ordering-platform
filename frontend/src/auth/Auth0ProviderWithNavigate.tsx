@@ -1,6 +1,7 @@
 import { useCreateMyUser } from '@/api/MyUserApi';
 import { Auth0Provider, type User, type AppState } from '@auth0/auth0-react';
 import { type FC, type ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Auth0ProviderWithNavigateProps = {
     children: ReactNode
@@ -8,6 +9,7 @@ type Auth0ProviderWithNavigateProps = {
 
 const Auth0ProviderWithNavigate: FC<Auth0ProviderWithNavigateProps> = ({ children }) => {
     const { mutateAsync: createMyUser } = useCreateMyUser();
+    const navigate = useNavigate();
 
     const domain = import.meta.env.VITE_AUTH0_DOMAIN;
     const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
@@ -19,12 +21,7 @@ const Auth0ProviderWithNavigate: FC<Auth0ProviderWithNavigateProps> = ({ childre
     }
 
     const onRedirectCallback = (appState?: AppState, user?: User) => {
-        if (user?.sub && user.email) {
-            createMyUser({
-                auth0Id: user.sub,
-                email: user.email
-            });
-        }
+        navigate("/auth-callback");
     }
 
     return (
