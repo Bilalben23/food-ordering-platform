@@ -21,9 +21,38 @@ export const createCurrentUser = async (req: Request, res: Response) => {
         });
 
     } catch (err) {
-        console.error("Error creating current user:", err);
         res.status(500).json({
             message: "Error creating current user"
+        });
+    }
+}
+
+
+export const updateCurrentUser = async (req: Request, res: Response) => {
+    try {
+
+        const { name, addressLine1, country, city } = req.body;
+
+        const user = await User.findById(req.userId);
+
+        if (!user) {
+            res.status(404).json({
+                message: "User not found"
+            })
+            return;
+        }
+
+        user.name = name;
+        user.addressLine1 = addressLine1;
+        user.city = city;
+        user.country = country;
+
+        res.send(user);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: "Error updating current user"
         });
     }
 }

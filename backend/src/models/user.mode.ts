@@ -16,6 +16,9 @@ const userSchema = new Schema({
     addressLine1: {
         type: String
     },
+    country: {
+        type: String
+    },
     city: {
         type: String
     }

@@ -12,6 +12,7 @@ router.post(
     MyUserController.createCurrentUser
 );
 
+router.patch("/", MyUserController.updateCurrentUser);
 
 
 
