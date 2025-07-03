@@ -10,30 +10,30 @@ type CreateUserRequest = {
 }
 
 
-const createMyUser = async (user: CreateUserRequest) => {
-
-    const { getAccessTokenSilently } = useAuth0();
-
-    const accessToken = await getAccessTokenSilently();
-
-    const response = await fetch(`${API_BASE_URL}/v1/my/user`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        },
-        body: JSON.stringify(user),
-    });
-
-    if (!response.ok) {
-        throw new Error(`Error creating user: ${response.statusText}`);
-    }
-
-    return response.json();
-}
 
 
 export const useCreateMyUser = () => {
+    const { getAccessTokenSilently } = useAuth0();
+
+    const createMyUser = async (user: CreateUserRequest) => {
+
+        const accessToken = await getAccessTokenSilently();
+
+        const response = await fetch(`${API_BASE_URL}/v1/my/user`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(user),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error creating user: ${response.statusText}`);
+        }
+
+        return response.json();
+    }
 
     return useMutation({
         mutationKey: ['createMyUser'],

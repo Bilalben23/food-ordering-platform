@@ -15,7 +15,7 @@ export const createCurrentUser = async (req: Request, res: Response) => {
         }
 
         const newUser = await User.create(req.body);
-        return res.status(201).json({
+        res.status(201).json({
             message: "Current user created successfully",
             user: newUser.toObject()
         });
